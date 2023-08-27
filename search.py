@@ -13,8 +13,12 @@ import re
 pdf_text = PdfReader("frame.pdf")
 
 reader = pdf_text.pages
-pattern = re.compile("flaskanddjango.*\s.*\s.*\s.*")
+pattern = "flaskanddjango.*\s.*\s.*\s.*"
+note = ''
 for readers in reader:
     txt = readers.extract_text()
     for txts in re.finditer(pattern, txt, re.IGNORECASE):
+        note += txts.group()
         print(txts.group())
+
+print(note)
